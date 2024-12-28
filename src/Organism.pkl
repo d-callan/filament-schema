@@ -1,0 +1,28 @@
+// this could be better, check the values after underscore are numeric or literal .
+RefSeqRegex = Regex("^GCF_")
+GenBankRegex = Regex("^GCA_")
+
+class GenomeAssembly {
+    accession: String(this.matches(RefSeqRegex) || this.matches(GenBankRegex))
+    fixed isReference: Boolean(isRefSeqMatchesAccession)?
+
+    hidden isRefSeqMatchesAccession = (_) ->
+        if (isReference && !determineIsReference(accession))
+            throw("GenomeAssemblies that set 'isReference' to true must use the RefSeq (GCF_*) identifier for 'accession'.")
+        else true
+}
+
+function determineIsReference(assembly: String): Boolean = assembly.matches(RefSeqRegex)
+
+typealias Ploidy = "Haploid" | "Diploid" | "Polyploid"
+
+class OrganismAttributes {
+    ploidy: Ploidy
+}
+
+class Organism {
+    name: String
+    tags: Listing<String>
+    assemblies: Listing<Assembly>
+    attributes: OranismAttributes
+}
