@@ -1,0 +1,7 @@
+import "Core.pkl"
+
+class Workflow {
+    name: String
+    tags: Listing<String>
+    attributes: OrganismWorkflowMapAnnotation
+}

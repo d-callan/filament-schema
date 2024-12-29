@@ -1,3 +1,5 @@
+import "Core.pkl"
+
 // this could be better, check the values after underscore are numeric or literal .
 RefSeqRegex = Regex("^GCF_")
 GenBankRegex = Regex("^GCA_")
@@ -14,15 +16,9 @@ class GenomeAssembly {
 
 function determineIsReference(assembly: String): Boolean = assembly.matches(RefSeqRegex)
 
-typealias Ploidy = "Haploid" | "Diploid" | "Polyploid"
-
-class OrganismAttributes {
-    ploidy: Ploidy
-}
-
 class Organism {
     name: String
     tags: Listing<String>
-    assemblies: Listing<Assembly>
-    attributes: OranismAttributes
+    assemblies: Listing<GenomeAssembly>
+    attributes: OrganismWorkflowMapAnnotation
 }
