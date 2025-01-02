@@ -1,0 +1,52 @@
+examples {
+  ["a completely manually defined GenomeAssembly"] {
+    new {
+      accession = "GCF_000002845.2"
+      isReference = true
+    }
+  }
+  ["a GenomeAssembly using determineIsReference"] {
+    new {
+      accession = "GCF_000002845.2"
+      isReference = true
+    }
+  }
+  ["a completely manually defined Organism"] {
+    new {
+      name = "Leishmania braziliensis"
+      tags {
+        "TriTrypDB.org"
+      }
+      assemblies {
+        new {
+          accession = "GCF_000002845.2"
+          isReference = true
+        }
+      }
+      attributes {
+        ploidy = "Diploid"
+      }
+    }
+  }
+  ["a manually defined Organism with multiple accessions"] {
+    new {
+      name = "Cryptococcus neoformans"
+      tags {
+        "FungiDB.org"
+      }
+      assemblies {
+        new {
+          accession = "GCF_000091045.1"
+          isReference = true
+        }
+        new {
+          accession = "GCA_000149245.3"
+          isReference = false
+        }
+      }
+      attributes {
+        ploidy = "Haploid"
+      }
+    }
+  }
+}

@@ -1,12 +1,11 @@
-import "Core.pkl"
+import "Core.pkl" as core
 
-// this could be better, check the values after underscore are numeric or literal .
-RefSeqRegex = Regex("^GCF_")
-GenBankRegex = Regex("^GCA_")
+const RefSeqRegex = Regex("^GCF_[0-9]+.[0-9]")
+const GenBankRegex = Regex("^GCA_[0-9]+.[0-9]")
 
 class GenomeAssembly {
     accession: String(this.matches(RefSeqRegex) || this.matches(GenBankRegex))
-    fixed isReference: Boolean(isRefSeqMatchesAccession)?
+    isReference: Boolean
 
     hidden isRefSeqMatchesAccession = (_) ->
         if (isReference && !determineIsReference(accession))
@@ -14,11 +13,11 @@ class GenomeAssembly {
         else true
 }
 
-function determineIsReference(assembly: String): Boolean = assembly.matches(RefSeqRegex)
+const function determineIsReference(assembly: String): Boolean = assembly.matches(RefSeqRegex)
 
 class Organism {
     name: String
     tags: Listing<String>
     assemblies: Listing<GenomeAssembly>
-    attributes: OrganismWorkflowMapAnnotation
+    attributes: core.OrganismWorkflowMapAnnotation
 }

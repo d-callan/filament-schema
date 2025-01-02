@@ -1,0 +1,89 @@
+amends "pkl:test"
+
+import "../src/Core.pkl" as core
+import "../src/Organism.pkl" as organism
+
+facts {
+    ["determineIsReference identifies a GCF accession as a reference"] {
+        organism.determineIsReference("GCF_000002845.2")
+    }
+
+    ["determineIsReference does not identify GCA accession as reference"] {
+        !organism.determineIsReference("GCA_000149245.3")
+    }
+
+    ["determineIsReference does not identify random strings as reference"] {
+        !organism.determineIsReference("foobar")
+    }
+
+    ["GenBankRegex matches GCA_* accession"] {
+        "GCA_000149245.3".matches(organism.GenBankRegex)
+    }
+
+    ["GenBankRegex does not match GCF_* accession"] {
+        !"GCF_000002845.2".matches(organism.GenBankRegex)
+    }
+
+    ["GenBankRegex does not match random strings"] {
+        !"foobar".matches(organism.GenBankRegex)
+    }
+
+    // TODO: maybe more robust tests of my awful regex skills
+}
+
+// TODO: see if there is a way to test the error about a reference having a genbank accession only
+
+// remember these are like snapshots, each of these will produce a little file 
+// and that will be compared to the output of future test runs
+examples {
+    ["a completely manually defined GenomeAssembly"] {
+        new organism.GenomeAssembly {
+            accession = "GCF_000002845.2"
+            isReference = true
+        }
+    }
+
+    ["a GenomeAssembly using determineIsReference"] {
+        local myAccession = "GCF_000002845.2"
+        new organism.GenomeAssembly {
+            accession = myAccession
+            isReference = organism.determineIsReference(myAccession)
+        }
+    }
+
+    ["a completely manually defined Organism"] {
+        new organism.Organism {
+            name = "Leishmania braziliensis"
+            tags = new Listing {"TriTrypDB.org"}
+            assemblies = new Listing {
+                new organism.GenomeAssembly {
+                    accession = "GCF_000002845.2"
+                    isReference = true
+                }
+            }
+            attributes = new core.OrganismWorkflowMapAnnotation {
+                ploidy = "Diploid"
+            }
+        }
+    }
+
+    ["a manually defined Organism with multiple accessions"] {
+        new organism.Organism {
+            name = "Cryptococcus neoformans"
+            tags = new Listing {"FungiDB.org"}
+            assemblies = new Listing {
+                new organism.GenomeAssembly {
+                    accession = "GCF_000091045.1"
+                    isReference = true
+                }
+                new organism.GenomeAssembly {
+                    accession = "GCA_000149245.3"
+                    isReference = false
+                }
+            }
+            attributes = new core.OrganismWorkflowMapAnnotation {
+                ploidy = "Haploid"
+            }
+        }
+    }
+}
