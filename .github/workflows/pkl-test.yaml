@@ -14,7 +14,7 @@ jobs:
         uses: drafteame/pkl-action@main
         with:
           version: '0.25.3'  # Specify the desired version here
-          args: '--help'    # Specify the command arguments here
+          args: 'test tests/*'    # Specify the command arguments here
 
       - name: Run PKL command
-        run: pkl run tests/*
+        run: echo "PKL tests executed"
