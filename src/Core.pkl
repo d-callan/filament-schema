@@ -1,5 +1,5 @@
-typealias Ploidy = "Haploid" | "Diploid" | "Polyploid"
+typealias Ploidy = "Haploid" | "Diploid" | "Polyploid" | "NA"
 
 class OrganismWorkflowMapAnnotation {
-    ploidy: Ploidy
+    ploidy: Ploidy = "NA"
 }

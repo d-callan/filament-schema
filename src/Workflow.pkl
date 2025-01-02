@@ -1,0 +1,12 @@
+import "Core.pkl" as core
+
+// TODO: i think theres a question whether we actually need anything more than trsID and attributes here
+class Workflow {
+    trsID: String
+    name: String
+    tags: Listing<String>
+    description: String
+    attributes: core.OrganismWorkflowMapAnnotation
+}
+
+workflows: Listing<Workflow>

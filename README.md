@@ -14,7 +14,7 @@ The project structure is something like this:
  ┣ src
  ┃ ┣ Core.pkl                       # a module of things shared across other modules
  ┃ ┣ Organism.pkl                   # a module for defining Organisms and their attributes
- ┃ ┗ Workflows.pkl                  # a module for defining Galaxy IWC Workflows and their attributes
+ ┃ ┗ Workflow.pkl                  # a module for defining Galaxy IWC Workflows and their attributes
  ┣ tests
  ┃ ┣ Organism.pkl                   # tests of the Organism Module AND its examples
  ┃ ┗ Organism.pkl-expected.pcf      # snapshot of generated Organism examples

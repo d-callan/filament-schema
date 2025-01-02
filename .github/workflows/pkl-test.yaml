@@ -13,5 +13,11 @@ jobs:
       - name: Test Organism module
         uses: drafteame/pkl-action@main
         with:
-          version: '0.25.3'  # Specify the desired version here
+          version: '0.1.3'  # Specify the desired version here
           args: 'test tests/Organism.pkl'    # Specify the command arguments here
+
+      - name: Test Workflow module
+        uses: drafteame/pkl-action@main
+        with:
+          version: '0.1.3'
+          args: 'test tests/Workflow.pkl'

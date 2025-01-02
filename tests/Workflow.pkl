@@ -1,0 +1,9 @@
+amends "pkl:test"
+
+import "../examples/Workflow.pkl" as _examples
+
+examples {
+    ["workflows"] {
+        _examples.workflows
+    }
+}
