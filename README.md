@@ -6,14 +6,14 @@ The project structure is something like this:
 
 ```ini
 .
-|-Dockerfile			# a container for development/ local testing
-|-src
-| |-MyModule.pkl 		# an importable module, defines classes etc.
-|-examples
-| |-MyModule.pkl 		# examples building config using MyModule
-|-tests
-| |-MyModule.pkl		# tests of MyModule and its examples
-| |-MyModule.pkl-expected.pcf	# snapshot of MyModule examples
++--Dockerfile				# a container for development/ local testing
++--src
+|  +--MyModule.pkl 			# an importable module, defines classes etc.
++--examples
+|  +--MyModule.pkl 			# examples building config using MyModule
++--tests
+|  +--MyModule.pkl			# tests of MyModule and its examples
+|  +--MyModule.pkl-expected.pcf		# snapshot of MyModule examples
 ```
 
 ## Development
