@@ -6,14 +6,20 @@ The project structure is something like this:
 
 ```ini
 .
-+--Dockerfile				# a container for development/ local testing
-+--src
-|  +--MyModule.pkl 			# an importable module, defines classes etc.
-+--examples
-|  +--MyModule.pkl 			# examples building config using MyModule
-+--tests
-|  +--MyModule.pkl			# tests of MyModule and its examples
-|  +--MyModule.pkl-expected.pcf		# snapshot of MyModule examples
+ ┣ .github
+ ┃ ┗ workflows
+ ┃   ┗ pkl-test.yaml
+ ┣ examples
+ ┃ ┗ Organism.pkl                   # some example Organism config
+ ┣ src
+ ┃ ┣ Core.pkl                       # a module of things shared across other modules
+ ┃ ┣ Organism.pkl                   # a module for defining Organisms and their attributes
+ ┃ ┗ Workflows.pkl                  # a module for defining Galaxy IWC Workflows and their attributes
+ ┣ tests
+ ┃ ┣ Organism.pkl                   # tests of the Organism Module AND its examples
+ ┃ ┗ Organism.pkl-expected.pcf      # snapshot of generated Organism examples
+ ┣ Dockerfile                       # a container for development/ local testing
+ ┗ README.md
 ```
 
 ## Development
