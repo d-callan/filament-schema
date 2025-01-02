@@ -15,6 +15,3 @@ jobs:
         with:
           version: '0.25.3'  # Specify the desired version here
           args: 'test tests/Organism.pkl'    # Specify the command arguments here
-
-      - name: Run PKL command
-        run: echo "Organism tests executed!!"
