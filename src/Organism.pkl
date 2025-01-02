@@ -13,7 +13,18 @@ class GenomeAssembly {
         else true
 }
 
-const function determineIsReference(assembly: String): Boolean = assembly.matches(RefSeqRegex)
+function determineIsReference(accession: String): Boolean = accession.matches(RefSeqRegex)
+
+function buildGenomeAssemblyListing(accessions: Listing<String>): 
+    Listing<GenomeAssembly> = 
+    new Listing {
+        for (_accession in accessions) {
+            new GenomeAssembly{
+                accession = _accession
+                isReference = determineIsReference(_accession) 
+            }
+        }
+    }
 
 class Organism {
     name: String
@@ -21,3 +32,6 @@ class Organism {
     assemblies: Listing<GenomeAssembly>
     attributes: core.OrganismWorkflowMapAnnotation
 }
+
+genomes: Listing<GenomeAssembly>
+organisms: Listing<Organism>
