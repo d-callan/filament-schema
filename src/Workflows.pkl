@@ -1,7 +1,9 @@
 import "Core.pkl"
 
 class Workflow {
+    trsID: String
     name: String
     tags: Listing<String>
+    description: String
     attributes: OrganismWorkflowMapAnnotation
 }
