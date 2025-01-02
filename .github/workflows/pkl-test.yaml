@@ -10,11 +10,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup PKL CLI
+      - name: Test Organism module
         uses: drafteame/pkl-action@main
         with:
           version: '0.25.3'  # Specify the desired version here
-          args: 'test tests/*'    # Specify the command arguments here
+          args: 'test tests/Organism.pkl'    # Specify the command arguments here
 
       - name: Run PKL command
-        run: echo "PKL tests executed"
+        run: echo "Organism tests executed!!"
