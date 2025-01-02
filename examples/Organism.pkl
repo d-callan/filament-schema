@@ -1,0 +1,69 @@
+amends "../src/Organism.pkl"
+
+import "../src/Core.pkl" as core
+// import as well as the amend, to get access to helper functions
+// TODO: consider a Util.pkl to home ALL helper functions instead?
+import "../src/Organism.pkl" as organism
+
+genomes {
+    new GenomeAssembly {
+            accession = "GCF_000002845.2"
+            isReference = true
+        }
+
+    local myAccession = "GCF_000002845.2"
+    new GenomeAssembly {
+        accession = myAccession
+        isReference = organism.determineIsReference(myAccession)
+    }
+}
+
+organisms {
+    new Organism {
+        name = "Leishmania braziliensis"
+        tags = new Listing {"TriTrypDB.org"}
+        assemblies = new Listing {
+            new GenomeAssembly {
+                accession = "GCF_000002845.2"
+                isReference = true
+            }
+        }
+        attributes = new core.OrganismWorkflowMapAnnotation {
+            ploidy = "Diploid"
+        }
+    }
+
+    new Organism {
+        name = "Cryptococcus neoformans"
+        tags = new Listing {"FungiDB.org"}
+        assemblies = new Listing {
+            new GenomeAssembly {
+                accession = "GCF_000091045.1"
+                isReference = true
+            }
+            new GenomeAssembly {
+                accession = "GCA_000149245.3"
+                isReference = false
+            }
+        }
+        attributes = new core.OrganismWorkflowMapAnnotation {
+            ploidy = "Haploid"
+        }
+    }
+
+    // TODO: figure if there is a way to auto-export things from Core in the modules using it
+
+    local neoformansAccessions = new Listing {
+        "GCF_000091045.1"
+        "GCA_000149245.3"
+    }
+
+    new Organism {
+        name = "Cryptococcus neoformans"
+        tags = new Listing {"FungiDB.org"}
+        assemblies = organism.buildGenomeAssemblyListing(neoformansAccessions)
+        attributes = new core.OrganismWorkflowMapAnnotation {
+            ploidy = "Haploid"
+        }
+    }
+}
