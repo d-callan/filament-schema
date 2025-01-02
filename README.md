@@ -37,4 +37,7 @@ available under /home/dev. From here you should be able to do things like `pkl -
 meaningful output, as a test the container is working. The goal is to allow a dev to use this 
 container to run tests like `pkl test tests/Oranism.pkl` before pushing their changes, etc.
 
+To see an example output JSON file, you can do something like `pkl eval -f json examples/Workflow.pkl`
+from `home/dev/` within the interactive development container.
+
 *NOTE:* There is a VS Code Extension available. See [here](https://pkl-lang.org/vscode/current/installation.html).
